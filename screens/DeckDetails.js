@@ -1,17 +1,21 @@
 import React from 'react'
+import { connect } from 'react-redux'
+
 import { Card, CardItem, Text, Body, Left, Right, Button, Icon } from 'native-base'
+
+import { findDeck } from '../helpers/utils'
 
 /**
  * @returns {React.Element} A single deck item with general deck properties.
  */
-const DeckDetails = ({ id, name, cards }) => (
+const DeckDetails = ({ id, deck }) => (
     <Card>
         <CardItem header>
-            <Text>{name}</Text>
+            <Text>{deck && deck.name}</Text>
         </CardItem>
         <CardItem>
             <Body>
-                <Text>Cards: {cards.length}</Text>
+                <Text>Cards: {deck && deck.cards.length}</Text>
             </Body>
         </CardItem>
         <CardItem footer>
@@ -31,4 +35,12 @@ const DeckDetails = ({ id, name, cards }) => (
     </Card>
 )
 
-export default DeckDetails
+const mapStateToProps = ({ decks }, { navigation }) => {
+    const { id } = navigation.state.params
+
+    return {
+        deck: findDeck(id, decks),
+    }
+}
+
+export default connect(mapStateToProps)(DeckDetails)
