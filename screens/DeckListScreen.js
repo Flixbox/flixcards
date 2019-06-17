@@ -1,8 +1,7 @@
 import React from 'react'
-import { Image, Platform, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { Container, Content, Text } from 'native-base'
 
 import Components from '../components'
-import { Container, Content } from 'native-base'
 
 export default (DeckListScreen = () => (
     <Container>
