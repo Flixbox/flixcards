@@ -9,10 +9,14 @@ const DeckListScreen = ({ decks, navigation }) => {
         navigation.navigate('NewDeck')
     }
 
+    function deckDetailNavigation(id) {
+        navigation.navigate('DeckDetails', { id })
+    }
+
     return (
         <Content>
             {decks.map(deck => (
-                <Components.DeckListItem {...deck} key={deck.id} />
+                <Components.DeckListItem {...deck} deckDetailNavigation={deckDetailNavigation} key={deck.id} />
             ))}
             <Button block onPress={newDeck}>
                 <Text>New deck</Text>
