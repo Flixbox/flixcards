@@ -13,6 +13,8 @@ import Components from './components'
 const App = ({ skipLoadingScreen }) => {
     const [isLoadingComplete, setLoadingComplete] = useState(false)
 
+    console.log('isLoadingComplete: ', isLoadingComplete)
+
     if (!isLoadingComplete && !skipLoadingScreen) {
         return (
             <AppLoading
@@ -45,7 +47,7 @@ async function loadResourcesAsync() {
             Roboto_medium: require('native-base/Fonts/Roboto_medium.ttf'),
             ...Ionicons.font,
         }),
-    ])
+    ]).then(() => console.log('Loading definitely complete'))
 }
 
 const handleFinishLoading = setLoadingComplete => {
