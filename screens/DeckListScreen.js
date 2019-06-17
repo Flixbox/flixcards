@@ -26,7 +26,7 @@ const DeckListScreen = ({ decks, navigation }) => {
 }
 
 DeckListScreen.navigationOptions = {
-    header: null,
+    title: 'React Flashcards - Flixcards',
 }
 
 const mapStateToProps = ({ decks }) => ({

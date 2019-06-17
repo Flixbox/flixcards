@@ -35,6 +35,10 @@ const DeckDetails = ({ id, deck }) => (
     </Card>
 )
 
+DeckDetails.navigationOptions = {
+    title: 'Deck details',
+}
+
 const mapStateToProps = ({ decks }, { navigation }) => {
     const { id } = navigation.state.params
 

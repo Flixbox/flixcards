@@ -43,9 +43,6 @@ const App = ({ skipLoadingScreen }) => {
         <Components.ReduxProvider>
             <Root>
                 <Container>
-                    <View style={{ height: Constants.statusBarHeight }}>
-                        <StatusBar barStyle="default" />
-                    </View>
                     <AppContainer />
                 </Container>
             </Root>

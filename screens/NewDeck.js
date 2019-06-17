@@ -12,4 +12,8 @@ const NewDeck = ({}) => {
     )
 }
 
+NewDeck.navigationOptions = {
+    title: 'New deck',
+}
+
 export default NewDeck
