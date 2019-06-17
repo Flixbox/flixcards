@@ -23,6 +23,6 @@ A React Native application for Android and iOS. Create your own decks of cards a
 
 ## Platforms
 
-This project has been tested on the AVD (Android Virtual Device) Nexus %X API 29 x86.
+This project has been tested on the AVD (Android Virtual Device) Nexus 5X API 29 x86.
 
 No iOS tests have been executed.
