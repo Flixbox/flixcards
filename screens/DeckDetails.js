@@ -37,6 +37,7 @@ const DeckDetails = ({ id, deck }) => (
 
 const mapStateToProps = ({ decks }, { navigation }) => {
     const { id } = navigation.state.params
+    console.log(id)
 
     return {
         deck: findDeck(id, decks),
