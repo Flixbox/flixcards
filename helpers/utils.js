@@ -1,5 +1,3 @@
 export default {
-    findDeck: (id, decks) => {
-        return decks.find(deck => deck.id === id)
-    },
+    findDeck: (id, decks) => decks.find(deck => deck.id === id),
 }
