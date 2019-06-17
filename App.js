@@ -14,8 +14,6 @@ import Components from './components'
 const App = ({ skipLoadingScreen }) => {
     const [isLoadingComplete, setLoadingComplete] = useState(false)
 
-    console.log('isLoadingComplete: ', isLoadingComplete)
-
     if (!isLoadingComplete && !skipLoadingScreen) {
         return (
             <AppLoading
@@ -25,7 +23,7 @@ const App = ({ skipLoadingScreen }) => {
             />
         )
     }
-    console.log('Creating main view!')
+
     return (
         <Components.ReduxProvider>
             <Root>
