@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import Components from '../components'
 
 const DeckListScreen = ({ decks, navigation }) => {
-    function newDeck() {
+    function newDeckNavigation() {
         navigation.navigate('NewDeck')
     }
 
@@ -18,7 +18,7 @@ const DeckListScreen = ({ decks, navigation }) => {
             {decks.map(deck => (
                 <Components.DeckListItem {...deck} deckDetailNavigation={deckDetailNavigation} key={deck.id} />
             ))}
-            <Button block onPress={newDeck}>
+            <Button block onPress={newDeckNavigation}>
                 <Text>New deck</Text>
             </Button>
         </Content>
@@ -26,7 +26,7 @@ const DeckListScreen = ({ decks, navigation }) => {
 }
 
 DeckListScreen.navigationOptions = {
-    title: 'React Flashcards - Flixcards',
+    title: 'My decks',
 }
 
 const mapStateToProps = ({ decks }) => ({
