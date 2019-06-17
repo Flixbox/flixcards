@@ -8,7 +8,7 @@ import React, { useState } from 'react'
 import { StatusBar } from 'react-native'
 import { Container, View, Root } from 'native-base'
 
-import AppNavigator from './navigation/AppNavigator'
+import AppContainer from './navigation/AppContainer'
 import Components from './components'
 
 const App = ({ skipLoadingScreen }) => {
@@ -31,7 +31,7 @@ const App = ({ skipLoadingScreen }) => {
                     <View style={{ height: Constants.statusBarHeight }}>
                         <StatusBar barStyle="default" />
                     </View>
-                    <AppNavigator />
+                    <AppContainer />
                 </Container>
             </Root>
         </Components.ReduxProvider>
