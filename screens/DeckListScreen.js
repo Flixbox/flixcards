@@ -1,16 +1,25 @@
 import React from 'react'
-import { Content } from 'native-base'
+import { Content, Button, Text } from 'native-base'
 import { connect } from 'react-redux'
 
 import Components from '../components'
 
-const DeckListScreen = ({ decks }) => (
-    <Content>
-        {decks.map(deck => (
-            <Components.DeckListItem {...deck} key={deck.id} />
-        ))}
-    </Content>
-)
+const DeckListScreen = ({ decks, navigation }) => {
+    function newDeck() {
+        navigation.navigate('NewDeck')
+    }
+
+    return (
+        <Content>
+            {decks.map(deck => (
+                <Components.DeckListItem {...deck} key={deck.id} />
+            ))}
+            <Button block onPress={newDeck}>
+                <Text>New deck</Text>
+            </Button>
+        </Content>
+    )
+}
 
 DeckListScreen.navigationOptions = {
     header: null,
