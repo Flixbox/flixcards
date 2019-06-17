@@ -20,3 +20,9 @@ A React Native application for Android and iOS. Create your own decks of cards a
 - Navigate to the repository.
 - Run `yarn install`.
 - Run `yarn build`.
+
+## Platforms
+
+This project has been tested on the AVD (Android Virtual Device) Nexus %X API 29 x86.
+
+No iOS tests have been executed.
