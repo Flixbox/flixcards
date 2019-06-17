@@ -1,5 +1,6 @@
 import { AppLoading } from 'expo'
-import { Asset, Font } from 'expo-asset'
+import { Asset } from 'expo-asset'
+import { loadAsync as loadFont } from 'expo-font'
 import Constants from 'expo-constants'
 import { Ionicons } from '@expo/vector-icons'
 
@@ -42,12 +43,12 @@ const App = ({ skipLoadingScreen }) => {
 async function loadResourcesAsync() {
     await Promise.all([
         Asset.loadAsync([require('./assets/images/robot-dev.png'), require('./assets/images/robot-prod.png')]),
-        Font.loadAsync({
+        loadFont({
             Roboto: require('native-base/Fonts/Roboto.ttf'),
             Roboto_medium: require('native-base/Fonts/Roboto_medium.ttf'),
             ...Ionicons.font,
         }),
-    ]).then(() => console.log('Loading definitely complete'))
+    ])
 }
 
 const handleFinishLoading = setLoadingComplete => {
