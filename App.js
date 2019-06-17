@@ -7,6 +7,7 @@ import { StatusBar } from 'react-native'
 import { Container, View } from 'native-base'
 
 import AppNavigator from './navigation/AppNavigator'
+import Components from './components'
 
 export default props => {
     const [isLoadingComplete, setLoadingComplete] = useState(false)
@@ -23,10 +24,12 @@ export default props => {
         console.log('Creating main view!')
         return (
             <Container>
-                <View style={{ height: Constants.statusBarHeight }}>
-                    <StatusBar barStyle="default" />
-                </View>
-                <AppNavigator />
+                <Components.ReduxProvider>
+                    <View style={{ height: Constants.statusBarHeight }}>
+                        <StatusBar barStyle="default" />
+                    </View>
+                    <AppNavigator />
+                </Components.ReduxProvider>
             </Container>
         )
     }
