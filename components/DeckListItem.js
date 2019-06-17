@@ -1,17 +1,17 @@
-import React, { Component } from 'react'
-import { Container, Header, Content, Card, CardItem, Text, Body } from 'native-base'
+import React from 'react'
+import { Card, CardItem, Text, Body } from 'native-base'
 
 /**
  * @returns {React.Element} A single card with general deck properties.
  */
-const DeckListItem = () => (
+const DeckListItem = ({ id, name, cards }) => (
     <Card>
         <CardItem header>
-            <Text>Deck title</Text>
+            <Text>{name}</Text>
         </CardItem>
         <CardItem>
             <Body>
-                <Text>Deck details</Text>
+                <Text>Cards: {cards.length}</Text>
             </Body>
         </CardItem>
         <CardItem footer>

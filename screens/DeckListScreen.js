@@ -6,7 +6,6 @@ import Components from '../components'
 
 const DeckListScreen = ({ decks }) => (
     <Content>
-        <Text>{"Here's a bunch of cards!"}</Text>
         {decks.map(deck => (
             <Components.DeckListItem {...deck} key={deck.id} />
         ))}
