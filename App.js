@@ -1,10 +1,9 @@
 import { AppLoading } from 'expo'
 import { Asset } from 'expo-asset'
 import Constants from 'expo-constants'
-import * as Font from 'expo-font'
 
 import React, { useState } from 'react'
-import { Platform, StatusBar, StyleSheet, View } from 'react-native'
+import { StatusBar, StyleSheet, View } from 'react-native'
 
 import AppNavigator from './navigation/AppNavigator'
 

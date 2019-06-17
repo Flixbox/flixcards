@@ -13,7 +13,7 @@ const DeckListStack = createStackNavigator({
 
 DeckListStack.navigationOptions = {
     tabBarLabel: 'Deck List',
-    tabBarIcon: <Icon name="bowtie" />,
+    tabBarIcon: <Icon type="MaterialCommunityIcons" name="credit-card-multiple" />,
 }
 
 export default createBottomTabNavigator({
