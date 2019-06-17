@@ -3,7 +3,8 @@ import { Asset } from 'expo-asset'
 import Constants from 'expo-constants'
 
 import React, { useState } from 'react'
-import { StatusBar, StyleSheet, View } from 'react-native'
+import { StatusBar } from 'react-native'
+import { Container, View } from 'native-base'
 
 import AppNavigator from './navigation/AppNavigator'
 
@@ -21,12 +22,12 @@ export default props => {
     } else {
         console.log('Creating main view!')
         return (
-            <View style={styles.container}>
+            <Container>
                 <View style={{ height: Constants.statusBarHeight }}>
                     <StatusBar barStyle="default" />
                 </View>
                 <AppNavigator />
-            </View>
+            </Container>
         )
     }
 }
@@ -40,10 +41,3 @@ async function loadResourcesAsync() {
 const handleFinishLoading = setLoadingComplete => {
     setLoadingComplete(true)
 }
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#fff',
-    },
-})
