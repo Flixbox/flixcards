@@ -15,13 +15,28 @@ const App = ({ skipLoadingScreen }) => {
     const [isLoadingComplete, setLoadingComplete] = useState(false)
 
     if (!isLoadingComplete && !skipLoadingScreen) {
-        return (
-            <AppLoading
-                startAsync={loadResourcesAsync}
-                onError={error => console.error(error)}
-                onFinish={() => handleFinishLoading(setLoadingComplete)}
-            />
-        )
+        return <AppLoading startAsync={loadResourcesAsync} onError={handleError} onFinish={handleFinishLoading} />
+    }
+
+    async function loadResourcesAsync() {
+        await Promise.all([
+            Asset.loadAsync([require('./assets/images/robot-dev.png'), require('./assets/images/robot-prod.png')]),
+            loadFont({
+                Roboto: require('native-base/Fonts/Roboto.ttf'),
+                Roboto_medium: require('native-base/Fonts/Roboto_medium.ttf'),
+                ...Ionicons.font,
+            }),
+        ])
+    }
+
+    function handleFinishLoading() {
+        setLoadingComplete(true)
+    }
+
+    function handleError(error) {
+        // Log any errors that we encounter while loading resources.
+        // eslint-disable-next-line no-console
+        console.error(error)
     }
 
     return (
@@ -36,21 +51,6 @@ const App = ({ skipLoadingScreen }) => {
             </Root>
         </Components.ReduxProvider>
     )
-}
-
-async function loadResourcesAsync() {
-    await Promise.all([
-        Asset.loadAsync([require('./assets/images/robot-dev.png'), require('./assets/images/robot-prod.png')]),
-        loadFont({
-            Roboto: require('native-base/Fonts/Roboto.ttf'),
-            Roboto_medium: require('native-base/Fonts/Roboto_medium.ttf'),
-            ...Ionicons.font,
-        }),
-    ])
-}
-
-const handleFinishLoading = setLoadingComplete => {
-    setLoadingComplete(true)
 }
 
 export default App
