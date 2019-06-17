@@ -1,1 +1,12 @@
-export default (state = {}, action) => state
+
+const defaultState = {
+    decks: {
+        "Default deck": {
+            cards: {
+                
+            }
+        }
+    }
+}
+
+export default (state = defaultState, action) => state

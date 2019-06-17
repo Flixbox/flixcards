@@ -33,10 +33,11 @@
     },
     "devDependencies": {
         "babel-preset-expo": "^5.1.0",
+        "eslint-config-react-native": "^4.0.0",
         "jest-expo": "^33.0.0"
     },
     "eslintConfig": {
-        "extends": "react-app"
+        "extends": "react-native"
     },
     "private": true,
     "prettier": {
