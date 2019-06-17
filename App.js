@@ -8,14 +8,14 @@ import { Platform, StatusBar, StyleSheet, View } from 'react-native'
 
 import AppNavigator from './navigation/AppNavigator'
 
-export default function App(props) {
+export default props => {
     const [isLoadingComplete, setLoadingComplete] = useState(false)
 
     if (!isLoadingComplete && !props.skipLoadingScreen) {
         return (
             <AppLoading
                 startAsync={loadResourcesAsync}
-                onError={handleLoadingError}
+                onError={error => console.error(error)}
                 onFinish={() => handleFinishLoading(setLoadingComplete)}
             />
         )
@@ -38,13 +38,7 @@ async function loadResourcesAsync() {
     ])
 }
 
-function handleLoadingError(error: Error) {
-    // In this case, you might want to report the error to your error reporting
-    // service, for example Sentry
-    console.warn(error)
-}
-
-function handleFinishLoading(setLoadingComplete) {
+const handleFinishLoading = setLoadingComplete => {
     setLoadingComplete(true)
 }
 
