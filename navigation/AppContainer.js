@@ -9,6 +9,9 @@ const MainStackNavigator = createStackNavigator({
     NewDeck: {
         screen: Screens.NewDeck,
     },
+    DeckDetails: {
+        screen: Screens.DeckDetails,
+    },
 })
 
 export default createAppContainer(MainStackNavigator)
