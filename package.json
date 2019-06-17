@@ -37,7 +37,10 @@
         "jest-expo": "^33.0.0"
     },
     "eslintConfig": {
-        "extends": "react-native"
+        "extends": "react-native",
+        "rules": {
+            "react/prop-types": "off"
+        }
     },
     "private": true,
     "prettier": {

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Content, Text } from 'native-base'
+import { Content } from 'native-base'
 import { connect } from 'react-redux'
 
 import Components from '../components'
@@ -16,10 +16,8 @@ DeckListScreen.navigationOptions = {
     header: null,
 }
 
-const mapStateToProps = ({ decks }) => {
-    return {
-        decks,
-    }
-}
+const mapStateToProps = ({ decks }) => ({
+    decks,
+})
 
 export default connect(mapStateToProps)(DeckListScreen)
