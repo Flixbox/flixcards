@@ -12,19 +12,27 @@ const NewDeck = ({ dispatch }) => {
     }
 
     function newDeck() {
-        dispatch(createDeck(state.name))
+        const name = state.name
+        dispatch(createDeck(name))
+        setState({ name: '' })
     }
 
     return (
         <Content>
             <Form>
                 <Item>
-                    <Input underline placeholder="Title" value={state.name} onChangeText={changeText} />
+                    <Input
+                        underline
+                        placeholder="Title"
+                        value={state.name}
+                        onChangeText={changeText}
+                        onSubmitEditing={newDeck}
+                    />
                 </Item>
+                <Button block onPress={newDeck}>
+                    <Text>Create deck</Text>
+                </Button>
             </Form>
-            <Button block onPress={newDeck}>
-                <Text>Create deck</Text>
-            </Button>
         </Content>
     )
 }
