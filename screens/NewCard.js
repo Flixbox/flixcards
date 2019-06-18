@@ -8,16 +8,16 @@ const NewCard = ({ deckId, dispatch, navigation }) => {
     const [state, setState] = useState({})
 
     function changeQuestion(question) {
-        setState({ question })
+        setState({ ...state, question })
     }
 
     function changeAnswer(answer) {
-        setState({ answer })
+        setState({ ...state, answer })
     }
 
     function newCard() {
         const { question, answer } = state
-        dispatch(createCard(deckId, question, answer))
+        dispatch(createCard({ deckId, question, answer }))
         setState({})
         navigation.goBack()
     }
