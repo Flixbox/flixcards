@@ -17,7 +17,7 @@ export default (state = defaultState, action) => {
                 },
             }
         case CREATE_CARD: {
-            const { deck, question, answer } = action
+            const { deck } = action
             return {
                 ...state,
                 decks: {
