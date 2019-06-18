@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Content, Button, Text, Form, Input, Item } from 'native-base'
 import { connect } from 'react-redux'
+import { StackActions, NavigationActions } from 'react-navigation'
 import uuid from 'uuid/v4'
 
 import { createDeck } from '../actions/decks'
@@ -17,7 +18,15 @@ const NewDeck = ({ dispatch, navigation }) => {
         const id = uuid()
         dispatch(createDeck(name, id))
         setState({ name: '' })
-        navigation.navigate('DeckDetails', { id })
+
+        const resetAction = StackActions.reset({
+            index: 1,
+            actions: [
+                NavigationActions.navigate({ routeName: 'Home' }),
+                NavigationActions.navigate({ routeName: 'DeckDetails', params: { id } }),
+            ],
+        })
+        navigation.dispatch(resetAction)
     }
 
     return (
