@@ -9,9 +9,9 @@ import utils from '../helpers/utils'
 /**
  * @returns {React.Element} A single deck item with general deck properties.
  */
-const DeckDetails = ({ id, deck, navigation }) => {
+const DeckDetails = ({ deck, navigation }) => {
     function newCardNavigation() {
-        navigation.navigate('NewCard', { id })
+        navigation.navigate('NewCard', { deckId: deck.id })
     }
 
     return (

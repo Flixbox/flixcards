@@ -4,7 +4,9 @@ import { connect } from 'react-redux'
 
 import { createCard } from '../actions/decks'
 
-const NewCard = ({ deckId, dispatch, navigation }) => {
+const NewCard = ({ dispatch, navigation }) => {
+    const { deckId } = navigation.state.params
+
     const [state, setState] = useState({})
 
     function changeQuestion(question) {
@@ -17,7 +19,7 @@ const NewCard = ({ deckId, dispatch, navigation }) => {
 
     function newCard() {
         const { question, answer } = state
-        dispatch(createCard({ deckId, question, answer }))
+        dispatch(createCard({ deck: deckId, question, answer }))
         setState({})
         navigation.goBack()
     }
