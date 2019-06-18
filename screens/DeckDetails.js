@@ -8,9 +8,9 @@ import Components from '../components'
 /**
  * @returns {React.Element} A single deck item with general deck properties.
  */
-const DeckDetails = ({ deck, navigation }) => {
+const DeckDetails = ({ id, deck, navigation }) => {
     function newCardNavigation() {
-        navigation.navigate('NewCard', { deckId: deck.id })
+        navigation.navigate('NewCard', { deckId: id })
     }
 
     return (
@@ -21,7 +21,7 @@ const DeckDetails = ({ deck, navigation }) => {
                 </CardItem>
                 <CardItem>
                     <Body>
-                        <Text>Cards: {deck && deck.cards.length}</Text>
+                        <Text>Cards: {deck && Object.keys(deck.cards).length}</Text>
                     </Body>
                 </CardItem>
                 <CardItem footer>
@@ -39,7 +39,8 @@ const DeckDetails = ({ deck, navigation }) => {
                     </Right>
                 </CardItem>
             </Card>
-            {deck && deck.cards.map(card => <Components.CardListItem {...card} key={card.id} />)}
+            {deck.cards &&
+                Object.keys(deck.cards).map(cardId => <Components.CardListItem {...deck.cards[cardId]} key={cardId} />)}
         </Content>
     )
 }
@@ -53,6 +54,7 @@ const mapStateToProps = ({ decks }, { navigation }) => {
 
     return {
         deck: decks[id],
+        id,
     }
 }
 
