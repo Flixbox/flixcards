@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card, CardItem, Text, Button, Left, Right, Icon } from 'native-base'
+import { Text, Button, Left, Right, Icon } from 'native-base'
 
 /**
  * @returns {React.Element} A single card with general deck properties.
