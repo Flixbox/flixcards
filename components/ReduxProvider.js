@@ -8,6 +8,8 @@ import { PersistGate } from 'redux-persist/integration/react'
 // import autoMergeLevel2 from 'redux-persist/lib/stateReconciler/autoMergeLevel2'
 import ExpoFileSystemStorage from 'redux-persist-expo-filesystem'
 
+import { composeWithDevTools } from 'redux-devtools-extension'
+
 import thunkMiddleware from 'redux-thunk'
 
 import reducer from '../reducers'
@@ -18,7 +20,7 @@ const persistConfig = {
     // stateReconciler: autoMergeLevel2,
 }
 
-const store = createStore(persistReducer(persistConfig, reducer), applyMiddleware(thunkMiddleware))
+const store = createStore(persistReducer(persistConfig, reducer), composeWithDevTools(applyMiddleware(thunkMiddleware)))
 
 /**
  * @returns {React.Element} A wrapper for the main app that provides the Redux store.

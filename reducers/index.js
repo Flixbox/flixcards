@@ -1,5 +1,5 @@
 import defaultState from '../helpers/defaultState'
-import { CREATE_DECK } from '../actions/decks'
+import { CREATE_DECK, CREATE_CARD } from '../actions/decks'
 import uuid from 'uuid/v4'
 
 export default (state = defaultState, action) => {
@@ -16,8 +16,9 @@ export default (state = defaultState, action) => {
                     },
                 ],
             }
+        case CREATE_CARD:
+            return state
         default:
-            console.log('Current state: ', state)
             return state
     }
 }
