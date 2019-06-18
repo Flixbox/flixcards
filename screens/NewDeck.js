@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
 import { Content, Button, Text, Form, Input, Item } from 'native-base'
 import { connect } from 'react-redux'
+import uuid from 'uuid/v4'
 
 import { createDeck } from '../actions/decks'
 
-const NewDeck = ({ dispatch }) => {
+const NewDeck = ({ dispatch, navigation }) => {
     const [state, setState] = useState({})
 
     function changeText(name) {
@@ -13,8 +14,10 @@ const NewDeck = ({ dispatch }) => {
 
     function newDeck() {
         const name = state.name
-        dispatch(createDeck(name))
+        const id = uuid()
+        dispatch(createDeck(name, id))
         setState({ name: '' })
+        navigation.navigate('DeckDetails', { id })
     }
 
     return (

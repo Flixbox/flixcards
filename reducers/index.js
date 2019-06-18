@@ -1,6 +1,5 @@
 import defaultState from '../helpers/defaultState'
 import { CREATE_DECK, CREATE_CARD } from '../actions/decks'
-import uuid from 'uuid/v4'
 
 export default (state = defaultState, action) => {
     switch (action.type) {
@@ -10,7 +9,7 @@ export default (state = defaultState, action) => {
                 decks: [
                     ...state.decks,
                     {
-                        id: uuid(),
+                        id: action.id,
                         name: action.name,
                         cards: [],
                     },
