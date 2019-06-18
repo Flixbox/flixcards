@@ -4,7 +4,6 @@ import { connect } from 'react-redux'
 import { Content, Card, CardItem, Text, Body, Left, Right, Button, Icon } from 'native-base'
 
 import Components from '../components'
-import utils from '../helpers/utils'
 
 /**
  * @returns {React.Element} A single deck item with general deck properties.
@@ -53,7 +52,7 @@ const mapStateToProps = ({ decks }, { navigation }) => {
     const { id } = navigation.state.params
 
     return {
-        deck: utils.findDeck(id, decks),
+        deck: decks[id],
     }
 }
 
