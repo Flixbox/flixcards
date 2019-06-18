@@ -9,6 +9,9 @@ const MainStackNavigator = createStackNavigator({
     NewDeck: {
         screen: Screens.NewDeck,
     },
+    NewCard: {
+        screen: Screens.NewCard,
+    },
     DeckDetails: {
         screen: Screens.DeckDetails,
     },

@@ -27,7 +27,7 @@ const DeckDetails = ({ id, deck, navigation }) => {
                 </CardItem>
                 <CardItem footer>
                     <Left>
-                        <Button transparent>
+                        <Button transparent onPress={newCardNavigation}>
                             <Icon name="add" />
                             <Text>New card</Text>
                         </Button>
