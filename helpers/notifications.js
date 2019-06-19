@@ -1,13 +1,7 @@
 import { AsyncStorage } from 'react-native'
 import { Notifications, Permissions } from 'expo'
 
-const NOTIFICATION_KEY = 'UdaciFitness:notifications'
-
-export function getDailyReminderValue() {
-    return {
-        today: "👋 Don't forget to log your data today!",
-    }
-}
+const NOTIFICATION_KEY = 'flixcards:notifications'
 
 export function clearLocalNotification() {
     return AsyncStorage.removeItem(NOTIFICATION_KEY).then(Notifications.cancelAllScheduledNotificationsAsync)

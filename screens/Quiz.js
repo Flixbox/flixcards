@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Content, Button, Text, Card, CardItem, Body, Left, Right, Icon } from 'native-base'
+import { setLocalNotification, clearLocalNotification } from '../helpers/notifications'
 
 const Quiz = ({ navigation }) => {
     const { deck } = navigation.state.params
@@ -59,6 +60,8 @@ const Quiz = ({ navigation }) => {
 
     function finishCard() {
         setCardsArray(cardsArray.slice(1))
+        // Clear local notification
+        clearLocalNotification().then(setLocalNotification)
     }
 
     return <Content>{cardsArray.length ? renderItem(cardsArray[0]) : renderEmpty()}</Content>
