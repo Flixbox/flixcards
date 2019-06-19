@@ -6,21 +6,27 @@ import uuid from 'uuid/v4'
 
 const Quiz = ({ navigation }) => {
     const { deckId, deck } = navigation.state.params
-    const { cards } = deck
 
-    const [score, setScore] = useState({
+    const defaultScore = {
         correct: 0,
         incorrect: 0,
-    })
+    }
+    const [score, setScore] = useState(defaultScore)
     const [revealed, setRevealed] = useState({})
-    const [cardsArray, setCardsArray] = useState(Object.keys(cards).map(id => ({ id, ...cards[id] })))
+    const [cardsArray, setCardsArray] = useState(generateCardArray(deck.cards))
+
+    function generateCardArray(cards) {
+        return Object.keys(cards).map(id => ({ id, ...cards[id] }))
+    }
 
     function goBack() {
         navigation.goBack()
     }
 
     function restart() {
-        navigation.goBack()
+        setScore(defaultScore)
+        setRevealed({})
+        setCardsArray(generateCardArray(deck.cards))
     }
 
     function renderEmpty() {
