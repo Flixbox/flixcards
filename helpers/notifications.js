@@ -1,5 +1,6 @@
 import { AsyncStorage } from 'react-native'
-import { Notifications, Permissions } from 'expo'
+import { Notifications } from 'expo'
+import { askAsync, NOTIFICATIONS } from 'expo-permissions'
 
 const NOTIFICATION_KEY = 'flixcards:notifications'
 
@@ -28,7 +29,7 @@ export function setLocalNotification() {
         .then(JSON.parse)
         .then(data => {
             if (data === null) {
-                Permissions.askAsync(Permissions.NOTIFICATIONS).then(({ status }) => {
+                askAsync(NOTIFICATIONS).then(({ status }) => {
                     if (status === 'granted') {
                         Notifications.cancelAllScheduledNotificationsAsync()
 
