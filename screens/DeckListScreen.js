@@ -14,7 +14,7 @@ const DeckListScreen = ({ decks, navigation }) => {
     }
 
     return (
-        <Content>
+        <Content padder>
             {Object.keys(decks).map(deckId => (
                 <Components.DeckListItem
                     {...decks[deckId]}
