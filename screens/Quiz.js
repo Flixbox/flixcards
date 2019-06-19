@@ -7,16 +7,13 @@ import uuid from 'uuid/v4'
 const Quiz = ({ navigation }) => {
     const { deckId, deck } = navigation.state.params
     const { cards } = deck
-    let deckSwiper
 
-    const [state, setState] = useState({
-        score: {
-            correct: 0,
-            incorrect: 0,
-        },
-        revealed: {},
-        cardsArray: Object.keys(cards).map(id => ({ id, ...cards[id] })),
+    const [score, setScore] = useState({
+        correct: 0,
+        incorrect: 0,
     })
+    const [revealed, setRevealed] = useState({})
+    const [cardsArray, setCardsArray] = useState(Object.keys(cards).map(id => ({ id, ...cards[id] })))
 
     function goBack() {
         navigation.goBack()
@@ -27,14 +24,15 @@ const Quiz = ({ navigation }) => {
     }
 
     function renderEmpty() {
-        return <Finished score={state.score} goBack={goBack} restart={restart} />
+        console.log(score)
+        return <Finished score={score} goBack={goBack} restart={restart} />
     }
 
     function renderItem(card) {
         return (
             <QuizCard
                 {...card}
-                revealed={state.revealed[card.id]}
+                revealed={revealed[card.id]}
                 revealCard={revealCard}
                 guessCorrect={guessCorrect}
                 guessIncorrect={guessIncorrect}
@@ -43,24 +41,24 @@ const Quiz = ({ navigation }) => {
     }
 
     function revealCard(id) {
-        setState({ ...state, revealed: { ...state.revealed, [id]: true } })
+        setRevealed({ ...revealed, [id]: true })
     }
 
     function guessCorrect(id) {
-        setState({ ...state, score: { ...state.score, correct: state.score.correct + 1 } })
+        setScore({ incorrect: score.incorrect, correct: score.correct + 1 })
         finishCard(id)
     }
 
     function guessIncorrect(id) {
-        setState({ ...state, score: { ...state.score, correct: state.score.incorrect + 1 } })
+        setScore({ incorrect: score.incorrect + 1, correct: score.correct })
         finishCard(id)
     }
 
     function finishCard(id) {
-        setState({ ...state, cardsArray: state.cardsArray.slice(1) })
+        setCardsArray(cardsArray.slice(1))
     }
 
-    return <Content>{state.cardsArray.length ? renderItem(state.cardsArray[0]) : renderEmpty()}</Content>
+    return <Content>{cardsArray.length ? renderItem(cardsArray[0]) : renderEmpty()}</Content>
 }
 
 const Finished = ({ goBack, restart, score }) => (
@@ -70,7 +68,7 @@ const Finished = ({ goBack, restart, score }) => (
         </CardItem>
         <CardItem>
             <Body>
-                <Text>{`Correct responses: ${score.correct}/${score.incorrect}`}</Text>
+                <Text>{`Correct responses: ${score.correct}/${score.correct + score.incorrect}`}</Text>
             </Body>
         </CardItem>
         <CardItem footer>
