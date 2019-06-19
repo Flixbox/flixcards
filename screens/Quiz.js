@@ -6,17 +6,17 @@ import uuid from 'uuid/v4'
 
 const Quiz = ({ navigation }) => {
     const { deckId, deck } = navigation.state.params
+    const { cards } = deck
+    let deckSwiper
+
     const [state, setState] = useState({
-        finished: true,
         score: {
             correct: 0,
             incorrect: 0,
         },
+        revealed: {},
+        cardsArray: Object.keys(cards).map(id => ({ id, ...cards[id] })),
     })
-
-    const { cards } = deck
-    const cardsArray = Object.keys(cards).map(id => ({ id, ...cards[id] }))
-    let deckSwiper
 
     function goBack() {
         navigation.goBack()
@@ -31,7 +31,16 @@ const Quiz = ({ navigation }) => {
     }
 
     function renderItem(card) {
-        return <QuizCard {...card} />
+        return <QuizCard {...card} revealed={state.revealed[card.id]} revealCard={revealCard} />
+    }
+
+    function revealCard(id) {
+        setState({ ...state, revealed: { ...state.revealed, [id]: true } })
+    }
+
+    function onSwipe() {
+        setState({ ...state, cardsArray: state.cardsArray.slice(1) })
+        console.log(state.cardsArray.slice(1))
     }
 
     function assignDeckSwiperRef(c) {
@@ -42,10 +51,12 @@ const Quiz = ({ navigation }) => {
         <Content contentContainerStyle={{ flex: 1 }}>
             <DeckSwiper
                 ref={assignDeckSwiperRef}
-                dataSource={cardsArray}
+                dataSource={state.cardsArray}
                 renderItem={renderItem}
                 renderEmpty={renderEmpty}
                 looping={false}
+                onSwipeRight={onSwipe}
+                onSwipeLeft={onSwipe}
             />
         </Content>
     )
@@ -78,8 +89,10 @@ const Finished = ({ goBack, restart, score }) => (
     </Card>
 )
 
-const QuizCard = ({ question, answer, guessCorrect, guessIncorrect }) => {
-    const dataArray = [{ title: 'Answer', content: answer }]
+const QuizCard = ({ id, question, answer, guessCorrect, guessIncorrect, revealCard, revealed }) => {
+    function reveal() {
+        revealCard(id)
+    }
 
     return (
         <Card>
@@ -92,24 +105,31 @@ const QuizCard = ({ question, answer, guessCorrect, guessIncorrect }) => {
                 </Body>
             </CardItem>
             <CardItem>
-                <Body>
-                    <Accordion dataArray={dataArray} style={{ width: '100%' }} />
-                </Body>
+                {revealed ? (
+                    <Body>
+                        <Text>{answer}</Text>
+                        <Left>
+                            <Button transparent onPress={guessIncorrect}>
+                                <Icon type="AntDesign" name="minuscircleo" />
+                                <Text>Incorrect</Text>
+                            </Button>
+                        </Left>
+                        <Right>
+                            <Button transparent onPress={guessCorrect}>
+                                <Text>Correct</Text>
+                                <Icon type="AntDesign" name="pluscircleo" />
+                            </Button>
+                        </Right>
+                    </Body>
+                ) : (
+                    <Body>
+                        <Button onPress={reveal}>
+                            <Text>Reveal answer</Text>
+                        </Button>
+                    </Body>
+                )}
             </CardItem>
-            <CardItem footer>
-                <Left>
-                    <Button transparent onPress={guessIncorrect}>
-                        <Icon type="AntDesign" name="minuscircleo" />
-                        <Text>Incorrect</Text>
-                    </Button>
-                </Left>
-                <Right>
-                    <Button transparent onPress={guessCorrect}>
-                        <Text>Correct</Text>
-                        <Icon type="AntDesign" name="pluscircleo" />
-                    </Button>
-                </Right>
-            </CardItem>
+            <CardItem footer />
         </Card>
     )
 }
