@@ -13,6 +13,10 @@ const DeckDetails = ({ id, deck, navigation }) => {
         navigation.navigate('NewCard', { deckId: id })
     }
 
+    function quizNavigation() {
+        navigation.navigate('Quiz', { deckId: id, deck })
+    }
+
     return (
         <Content>
             <Card>
@@ -32,7 +36,7 @@ const DeckDetails = ({ id, deck, navigation }) => {
                         </Button>
                     </Left>
                     <Right>
-                        <Button transparent onPress={newCardNavigation}>
+                        <Button transparent onPress={quizNavigation}>
                             <Text>Start quiz</Text>
                             <Icon type="AntDesign" name="rightcircleo" />
                         </Button>
