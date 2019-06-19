@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Content, Button, Text, Form, Input, Item, Card, CardItem, Body, Left, Right } from 'native-base'
+import { Content, Button, Text, Form, Input, Item, Card, CardItem, Body, Left, Right, Icon } from 'native-base'
 import { connect } from 'react-redux'
 import { StackActions, NavigationActions } from 'react-navigation'
 import uuid from 'uuid/v4'
@@ -33,13 +33,15 @@ const Finished = ({ goBack, restart, score }) => (
         </CardItem>
         <CardItem footer>
             <Left>
-                <Button onPress={goBack}>
+                <Button transparent onPress={goBack}>
+                    <Icon type="AntDesign" name="leftcircleo" />
                     <Text>Back to deck</Text>
                 </Button>
             </Left>
             <Right>
-                <Button onPress={restart}>
+                <Button transparent onPress={restart}>
                     <Text>Restart quiz</Text>
+                    <Icon type="AntDesign" name="retweet" />
                 </Button>
             </Right>
         </CardItem>
