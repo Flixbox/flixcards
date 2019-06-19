@@ -1,11 +1,8 @@
 import React, { useState } from 'react'
-import { Content, Button, Text, Card, CardItem, Body, Left, Right, Icon, DeckSwiper, Accordion } from 'native-base'
-import { connect } from 'react-redux'
-import { StackActions, NavigationActions } from 'react-navigation'
-import uuid from 'uuid/v4'
+import { Content, Button, Text, Card, CardItem, Body, Left, Right, Icon } from 'native-base'
 
 const Quiz = ({ navigation }) => {
-    const { deckId, deck } = navigation.state.params
+    const { deck } = navigation.state.params
 
     const defaultScore = {
         correct: 0,
@@ -30,7 +27,6 @@ const Quiz = ({ navigation }) => {
     }
 
     function renderEmpty() {
-        console.log(score)
         return <Finished score={score} goBack={goBack} restart={restart} />
     }
 
@@ -60,7 +56,7 @@ const Quiz = ({ navigation }) => {
         finishCard(id)
     }
 
-    function finishCard(id) {
+    function finishCard() {
         setCardsArray(cardsArray.slice(1))
     }
 
