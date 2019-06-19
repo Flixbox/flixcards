@@ -41,7 +41,8 @@
     "eslintConfig": {
         "extends": "react-native",
         "rules": {
-            "react/prop-types": "off"
+            "react/prop-types": "off",
+            "react-native/no-inline-styles": "off"
         }
     },
     "private": true,
