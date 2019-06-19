@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Content, Button, Text } from 'native-base'
 import { connect } from 'react-redux'
 
 import Components from '../components'
+import { setLocalNotification } from '../helpers/notifications'
 
 const DeckListScreen = ({ decks, navigation }) => {
     function newDeckNavigation() {
@@ -12,6 +13,10 @@ const DeckListScreen = ({ decks, navigation }) => {
     function deckDetailNavigation(id) {
         navigation.navigate('DeckDetails', { id })
     }
+
+    useEffect(() => {
+        setLocalNotification()
+    })
 
     return (
         <Content padder>
