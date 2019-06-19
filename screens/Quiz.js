@@ -31,16 +31,33 @@ const Quiz = ({ navigation }) => {
     }
 
     function renderItem(card) {
-        return <QuizCard {...card} revealed={state.revealed[card.id]} revealCard={revealCard} />
+        return (
+            <QuizCard
+                {...card}
+                revealed={state.revealed[card.id]}
+                revealCard={revealCard}
+                guessCorrect={guessCorrect}
+                guessIncorrect={guessIncorrect}
+            />
+        )
     }
 
     function revealCard(id) {
         setState({ ...state, revealed: { ...state.revealed, [id]: true } })
     }
 
-    function onSwipe() {
+    function guessCorrect(id) {
+        setState({ ...state, score: { ...state.score, correct: state.score.correct + 1 } })
+        finishCard(id)
+    }
+
+    function guessIncorrect(id) {
+        setState({ ...state, score: { ...state.score, correct: state.score.incorrect + 1 } })
+        finishCard(id)
+    }
+
+    function finishCard(id) {
         setState({ ...state, cardsArray: state.cardsArray.slice(1) })
-        console.log(state.cardsArray.slice(1))
     }
 
     return <Content>{state.cardsArray.length ? renderItem(state.cardsArray[0]) : renderEmpty()}</Content>
@@ -53,7 +70,7 @@ const Finished = ({ goBack, restart, score }) => (
         </CardItem>
         <CardItem>
             <Body>
-                <Text>{`Score: ${score}`}</Text>
+                <Text>{`Correct responses: ${score.correct}/${score.incorrect}`}</Text>
             </Body>
         </CardItem>
         <CardItem footer>
