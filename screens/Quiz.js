@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Content, Button, Text, Card, CardItem, Body, Left, Right, Icon, DeckSwiper, View } from 'native-base'
+import { Content, Button, Text, Card, CardItem, Body, Left, Right, Icon, DeckSwiper, Accordion } from 'native-base'
 import { connect } from 'react-redux'
 import { StackActions, NavigationActions } from 'react-navigation'
 import uuid from 'uuid/v4'
@@ -78,32 +78,41 @@ const Finished = ({ goBack, restart, score }) => (
     </Card>
 )
 
-const QuizCard = ({ question, answer, guessCorrect, guessIncorrect }) => (
-    <Card>
-        <CardItem header>
-            <Text>Question</Text>
-        </CardItem>
-        <CardItem>
-            <Body>
-                <Text>{question}</Text>
-            </Body>
-        </CardItem>
-        <CardItem footer>
-            <Left>
-                <Button transparent onPress={guessIncorrect}>
-                    <Icon type="AntDesign" name="minuscircleo" />
-                    <Text>Incorrect</Text>
-                </Button>
-            </Left>
-            <Right>
-                <Button transparent onPress={guessCorrect}>
-                    <Text>Correct</Text>
-                    <Icon type="AntDesign" name="pluscircleo" />
-                </Button>
-            </Right>
-        </CardItem>
-    </Card>
-)
+const QuizCard = ({ question, answer, guessCorrect, guessIncorrect }) => {
+    const dataArray = [{ title: 'Answer', content: answer }]
+
+    return (
+        <Card>
+            <CardItem header>
+                <Text>Question</Text>
+            </CardItem>
+            <CardItem>
+                <Body>
+                    <Text>{question}</Text>
+                </Body>
+            </CardItem>
+            <CardItem>
+                <Body>
+                    <Accordion dataArray={dataArray} style={{ width: '100%' }} />
+                </Body>
+            </CardItem>
+            <CardItem footer>
+                <Left>
+                    <Button transparent onPress={guessIncorrect}>
+                        <Icon type="AntDesign" name="minuscircleo" />
+                        <Text>Incorrect</Text>
+                    </Button>
+                </Left>
+                <Right>
+                    <Button transparent onPress={guessCorrect}>
+                        <Text>Correct</Text>
+                        <Icon type="AntDesign" name="pluscircleo" />
+                    </Button>
+                </Right>
+            </CardItem>
+        </Card>
+    )
+}
 
 Quiz.navigationOptions = {
     title: 'Quiz',
