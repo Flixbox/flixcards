@@ -38,6 +38,7 @@ const Quiz = ({ navigation }) => {
                 revealCard={revealCard}
                 guessCorrect={guessCorrect}
                 guessIncorrect={guessIncorrect}
+                remaining={cardsArray.length}
             />
         )
     }
@@ -90,7 +91,7 @@ const Finished = ({ goBack, restart, score }) => (
     </Card>
 )
 
-const QuizCard = ({ id, question, answer, guessCorrect, guessIncorrect, revealCard, revealed }) => {
+const QuizCard = ({ id, question, answer, guessCorrect, guessIncorrect, revealCard, revealed, remaining }) => {
     function reveal() {
         revealCard(id)
     }
@@ -134,6 +135,9 @@ const QuizCard = ({ id, question, answer, guessCorrect, guessIncorrect, revealCa
                     </Button>
                 </CardItem>
             )}
+            <CardItem footer>
+                <Text>{`Remaining: ${remaining}`}</Text>
+            </CardItem>
         </Card>
     )
 }
