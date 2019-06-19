@@ -13,7 +13,7 @@ A React Native application for Android and iOS. Create your own decks of cards a
 - Navigate to the repository.
 - Run `yarn install`.
 - Run `yarn start`.
-- Press `a` to download the application to your emulator.
+- Press `a` to download the application to your android emulator.
 
 ## Production build
 
