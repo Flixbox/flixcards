@@ -43,23 +43,7 @@ const Quiz = ({ navigation }) => {
         console.log(state.cardsArray.slice(1))
     }
 
-    function assignDeckSwiperRef(c) {
-        deckSwiper = c
-    }
-
-    return (
-        <Content contentContainerStyle={{ flex: 1 }}>
-            <DeckSwiper
-                ref={assignDeckSwiperRef}
-                dataSource={state.cardsArray}
-                renderItem={renderItem}
-                renderEmpty={renderEmpty}
-                looping={false}
-                onSwipeRight={onSwipe}
-                onSwipeLeft={onSwipe}
-            />
-        </Content>
-    )
+    return <Content>{state.cardsArray.length ? renderItem(state.cardsArray[0]) : renderEmpty()}</Content>
 }
 
 const Finished = ({ goBack, restart, score }) => (
@@ -104,10 +88,14 @@ const QuizCard = ({ id, question, answer, guessCorrect, guessIncorrect, revealCa
                     <Text>{question}</Text>
                 </Body>
             </CardItem>
-            <CardItem>
-                {revealed ? (
-                    <Body>
-                        <Text>{answer}</Text>
+            {revealed ? (
+                <>
+                    <CardItem>
+                        <Body>
+                            <Text>{answer}</Text>
+                        </Body>
+                    </CardItem>
+                    <CardItem footer>
                         <Left>
                             <Button transparent onPress={guessIncorrect}>
                                 <Icon type="AntDesign" name="minuscircleo" />
@@ -120,16 +108,15 @@ const QuizCard = ({ id, question, answer, guessCorrect, guessIncorrect, revealCa
                                 <Icon type="AntDesign" name="pluscircleo" />
                             </Button>
                         </Right>
-                    </Body>
-                ) : (
-                    <Body>
-                        <Button onPress={reveal}>
-                            <Text>Reveal answer</Text>
-                        </Button>
-                    </Body>
-                )}
-            </CardItem>
-            <CardItem footer />
+                    </CardItem>
+                </>
+            ) : (
+                <CardItem footer>
+                    <Button onPress={reveal}>
+                        <Text>Reveal answer</Text>
+                    </Button>
+                </CardItem>
+            )}
         </Card>
     )
 }
