@@ -19,6 +19,8 @@ const NewDeck = ({ dispatch, navigation }) => {
         dispatch(createDeck(name, id))
         setState({ name: '' })
 
+        // Purge the stack and replace it with Home > Deck details.
+        // This will remove the "New Deck" screen because we don't need it anymore.
         const resetAction = StackActions.reset({
             index: 1,
             actions: [
