@@ -1,0 +1,43 @@
+version: 2
+updates:
+- package-ecosystem: npm
+  directory: "/"
+  schedule:
+    interval: monthly
+    time: "04:00"
+  open-pull-requests-limit: 99
+  ignore:
+  - dependency-name: react-native-web
+    versions:
+    - 0.14.10
+    - 0.14.11
+  - dependency-name: expo-permissions
+    versions:
+    - 10.0.0
+  - dependency-name: expo
+    versions:
+    - 40.0.0
+  - dependency-name: expo-font
+    versions:
+    - 8.4.0
+  - dependency-name: expo-asset
+    versions:
+    - 8.2.1
+  - dependency-name: native-base
+    versions:
+    - 2.15.0
+  - dependency-name: expo-constants
+    versions:
+    - 9.3.5
+  - dependency-name: "@expo/vector-icons"
+    versions:
+    - 12.0.2
+  - dependency-name: expo-web-browser
+    versions:
+    - 8.6.0
+  - dependency-name: react-navigation
+    versions:
+    - 4.4.3
+  - dependency-name: handlebars
+    versions:
+    - 4.7.6
