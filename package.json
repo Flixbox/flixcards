@@ -36,7 +36,7 @@
         "babel-preset-expo": "^5.1.0",
         "eslint-config-react-native": "^4.0.0",
         "jest-expo": "^33.0.0",
-        "redux-devtools-extension": "^2.13.8"
+        "redux-devtools-extension": "^2.13.9"
     },
     "eslintConfig": {
         "extends": "react-native",
